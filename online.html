@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Voting System</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+}
+button{
+    padding:10px;
+    margin:5px;
+    font-size:16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🗳️ Online Voting System</h1>
+
+<h3>Select Your Candidate</h3>
+
+<button onclick="vote('Candidate A')">Vote Candidate A</button>
+<button onclick="vote('Candidate B')">Vote Candidate B</button>
+<button onclick="vote('Candidate C')">Vote Candidate C</button>
+
+<h2 id="message"></h2>
+
+<hr>
+
+<h3>Results</h3>
+<p id="result"></p>
+
+<script>
+
+let voted = false;
+
+let votes = {
+    "Candidate A":0,
+    "Candidate B":0,
+    "Candidate C":0
+};
+
+function vote(candidate){
+
+    if(voted){
+        document.getElementById("message").innerHTML =
+        "You already voted!";
+        return;
+    }
+
+    votes[candidate]++;
+    voted = true;
+
+    document.getElementById("message").innerHTML =
+    "Vote Successfully Cast for " + candidate;
+
+    showResult();
+}
+
+function showResult(){
+
+    let output="";
+
+    for(let c in votes){
+        output += c + " : " + votes[c] + " votes <br>";
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+</html>
